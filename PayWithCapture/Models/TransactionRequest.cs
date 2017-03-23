@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayWithCapture.Common
+namespace PayWithCapture.Models
 {
-    public class Constants
+    public class TransactionRequest
     {
-        public const string GRANT_TYPE = "client_credentials";
+        public string transaction_id { get; set; }
     }
 }
