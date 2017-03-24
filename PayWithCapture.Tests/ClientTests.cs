@@ -58,5 +58,45 @@ namespace PayWithCapture.Tests
             response.Wait();
             Console.Write(response.Result);
         }
+
+        [TestMethod]
+        public void Test_That_Transaction_Query_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.getTransaction(Constants.SAMPLE_TRANSACTION_ID);
+            response.Wait();
+            Console.Write(response.Result);
+        }
+
+        [TestMethod]
+        public void Test_That_Create_Payment_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.createPayment(new Models.AccountPaymentRequest()
+            {
+                accountnumber = Constants.SAMPLE_ACCOUNT,
+                amount = Constants.SAMPLE_AMOUNT,
+                description = Constants.SAMPLE_DESCRIPTION,
+                hasaccessbanktoken = true,
+                merchant_id = merchantId,
+                transaction_id = Constants.SAMPLE_TRANSACTION_ID,
+                type = Constants.SAMPLE_ACCOUNT_TYPE
+            });
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Validate_Payment_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.validatePayment(new Models.PaymentValidationRequest()
+            {
+                type = Constants.ONE_OFF_ACCOUNT,
+                otp = Constants.SAMPLE_OTP
+            });
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
     }
 }

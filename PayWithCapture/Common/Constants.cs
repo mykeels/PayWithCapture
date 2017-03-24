@@ -16,6 +16,10 @@ namespace PayWithCapture.Common
         public const string SERVER_BASE_URL_PRODUCTION = "https://pwchostedstaging.herokuapp.com/";
         public const string OAUTH_TOKEN_URL = "oauth/token";
         public const string CAPTURE_PAY_URL = "capture/pay";
+        public const string TRANSACTION_DETAILS_URL = "orders/transactions";
+        public const string PAYMENT_URL = "orders/oneOffPayment";
+        public const string VALIDATE_PAYMENT_URL = "orders/validate"; //wrong url ... need to confirm
+        public const string POS_PRINT_URL = "orders/transactions";
 
         public static string ResolveApiUrl(string urlSuffix, Environment environment = Environment.Staging)
         {

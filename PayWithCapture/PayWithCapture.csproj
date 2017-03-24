@@ -62,6 +62,8 @@
     <Compile Include="Models\Payments\EmailPaymentResponse.cs" />
     <Compile Include="Models\Payments\EmailPaymentValidationRequest.cs" />
     <Compile Include="Models\Payments\EmailPaymentValidationResponse.cs" />
+    <Compile Include="Models\Payments\PaymentValidationResponse.cs" />
+    <Compile Include="Models\Payments\PaymentValidationRequest.cs" />
     <Compile Include="Models\QrCode\QRCodeFetchResponse.cs" />
     <Compile Include="Models\QrCode\QRProductGenerationResponse.cs" />
     <Compile Include="Models\Accounts\AccountPaymentRequest.cs" />
