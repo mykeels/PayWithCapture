@@ -10,15 +10,16 @@ namespace PayWithCapture.Common
     {
         public const string CONTENT_TYPE_XML = "text/xml";
         public const string CONTENT_TYPE_JSON = "application/json";
+        public const string CONTENT_TYPE_URL_FORM = "application/x-www-form-urlencoded";
         public const string GRANT_TYPE = "client_credentials";
         public const string SERVER_BASE_URL_STAGING = "https://pwcstaging.herokuapp.com/";
-        public const string SERVER_BASE_URL_PRODUCTION = "https://pwcstaging.herokuapp.com/";
+        public const string SERVER_BASE_URL_PRODUCTION = "https://pwchostedstaging.herokuapp.com/";
         public const string OAUTH_TOKEN_URL = "oauth/token";
-        public static Environment CurrentEnvironment { get; set; }
+        public const string CAPTURE_PAY_URL = "capture/pay";
 
-        public static string ResolveApiUrl(string urlSuffix)
+        public static string ResolveApiUrl(string urlSuffix, Environment environment = Environment.Staging)
         {
-            return $"{(CurrentEnvironment == Environment.Staging ? SERVER_BASE_URL_STAGING : SERVER_BASE_URL_PRODUCTION)}{urlSuffix}";
+            return $"{(environment == Environment.Staging ? SERVER_BASE_URL_STAGING : SERVER_BASE_URL_PRODUCTION)}{urlSuffix}";
         }
     }
 }

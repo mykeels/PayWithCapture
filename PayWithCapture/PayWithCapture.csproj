@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,7 @@
     <Compile Include="Models\Billers\BillerMoneySendRequest.cs" />
     <Compile Include="Models\Billers\BillerResponse.cs" />
     <Compile Include="Models\Billers\BillerProductResponse.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Payments\EmailPaymentRequest.cs" />
     <Compile Include="Models\Payments\EmailPaymentResponse.cs" />
     <Compile Include="Models\Payments\EmailPaymentValidationRequest.cs" />
