@@ -46,6 +46,9 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Environment.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Helpers\Api.cs" />
     <Compile Include="Models\Banks\BankResponse.cs" />
     <Compile Include="Models\Banks\BankTransferForeignResponse.cs" />
     <Compile Include="Models\Banks\BankTransferLocalRequest.cs" />
