@@ -5,6 +5,13 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayWithCapture", "PayWithCapture\PayWithCapture.csproj", "{29FCE0F7-B289-4B87-A09A-9DD819CE8F8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayWithCapture.Tests", "PayWithCapture.Tests\PayWithCapture.Tests.csproj", "{0BFC84B1-64E4-43D8-91D7-555FFA93DD3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{97B500BB-9840-4128-9A6A-CE495D4D1B42}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{29FCE0F7-B289-4B87-A09A-9DD819CE8F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29FCE0F7-B289-4B87-A09A-9DD819CE8F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29FCE0F7-B289-4B87-A09A-9DD819CE8F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BFC84B1-64E4-43D8-91D7-555FFA93DD3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BFC84B1-64E4-43D8-91D7-555FFA93DD3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BFC84B1-64E4-43D8-91D7-555FFA93DD3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BFC84B1-64E4-43D8-91D7-555FFA93DD3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -46,13 +46,37 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Models\BankResponse.cs" />
+    <Compile Include="Models\BankTransferForeignResponse.cs" />
+    <Compile Include="Models\BankTransferLocalRequest.cs" />
+    <Compile Include="Models\BankTransferLocalResponse.cs" />
+    <Compile Include="Models\BillerMoneySendRequest.cs" />
+    <Compile Include="Models\BillerResponse.cs" />
+    <Compile Include="Models\BillerProductResponse.cs" />
+    <Compile Include="Models\EmailPaymentRequest.cs" />
+    <Compile Include="Models\EmailPaymentResponse.cs" />
+    <Compile Include="Models\EmailPaymentValidationRequest.cs" />
+    <Compile Include="Models\EmailPaymentValidationResponse.cs" />
+    <Compile Include="Models\QRCodeFetchResponse.cs" />
+    <Compile Include="Models\QRProductGenerationResponse.cs" />
     <Compile Include="Models\AccountPaymentRequest.cs" />
     <Compile Include="Models\AccountPaymentResponse.cs" />
     <Compile Include="Models\AuthenticationRequest.cs" />
     <Compile Include="Models\AuthenticationResponse.cs" />
+    <Compile Include="Models\CardPaymentMasterResponse.cs" />
     <Compile Include="Models\CardPaymentRequest.cs" />
+    <Compile Include="Models\CardPaymentVerveResponse.cs" />
+    <Compile Include="Models\CardValidationRequest.cs" />
+    <Compile Include="Models\CardValidationResponse.cs" />
+    <Compile Include="Models\OtpAuthenticationRequest.cs" />
+    <Compile Include="Models\OtpAuthenticationResponse.cs" />
     <Compile Include="Models\PaymentRequest.cs" />
+    <Compile Include="Models\PosPrintRequest.cs" />
+    <Compile Include="Models\PosPrintResponse.cs" />
+    <Compile Include="Models\QRCodeFetchRequest.cs" />
+    <Compile Include="Models\QRProductGenerationRequest.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\SmsOtpResponse.cs" />
     <Compile Include="Models\TransactionRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
