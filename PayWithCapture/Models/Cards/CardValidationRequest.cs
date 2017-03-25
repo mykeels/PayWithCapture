@@ -8,7 +8,7 @@ namespace PayWithCapture.Models
 {
     public class CardValidationRequest
     {
-        public string type { get; set; }
+        public string type { get { return Common.Constants.CARD_VALIDATE_TYPE; } }
         public string otp { get; set; }
     }
 }

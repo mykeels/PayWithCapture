@@ -17,6 +17,7 @@ namespace PayWithCapture.Tests
         string clientId = ConfigurationManager.AppSettings["pwcClientId"];
         string clientSecret = ConfigurationManager.AppSettings["pwcClientSecret"];
         string merchantId = ConfigurationManager.AppSettings["pwcMerchantId"];
+        string transactionId = PayWithCapture.Common.Constants.GetTransactionId();
 
         private Client getDefaultClient(PayWithCapture.Common.Environment environment = PayWithCapture.Common.Environment.Staging)
         {
@@ -30,6 +31,14 @@ namespace PayWithCapture.Tests
                 merchantId = merchantId,
                 environment = environment
             });
+        }
+
+        [TestMethod]
+        public void Test_That_Transaction_IDs_Are_Unique()
+        {
+            List<string> ret = Enumerable.Repeat<Func<string>>(() => PayWithCapture.Common.Constants.GetTransactionId(), 5).Select(fn => fn()).ToList();
+            Console.WriteLine(JsonConvert.SerializeObject(ret, Formatting.Indented));
+            CollectionAssert.AllItemsAreUnique(ret);
         }
 
         [TestMethod]
@@ -52,7 +61,7 @@ namespace PayWithCapture.Tests
                 customer_email = Constants.SAMPLE_EMAIL,
                 customer_phone = Constants.SAMPLE_PHONE,
                 redirect_url = Constants.REDIRECT_URL,
-                transaction_id = Constants.SAMPLE_TRANSACTION_ID,
+                transaction_id = transactionId,
                 description = Constants.SAMPLE_DESCRIPTION
             });
             response.Wait();
@@ -63,7 +72,7 @@ namespace PayWithCapture.Tests
         public void Test_That_Transaction_Query_Works()
         {
             Client client = this.getDefaultClient();
-            var response = client.getTransaction(Constants.SAMPLE_TRANSACTION_ID);
+            var response = client.getTransaction(transactionId);
             response.Wait();
             Console.Write(response.Result);
         }
@@ -79,8 +88,7 @@ namespace PayWithCapture.Tests
                 description = Constants.SAMPLE_DESCRIPTION,
                 hasaccessbanktoken = true,
                 merchant_id = merchantId,
-                transaction_id = Constants.SAMPLE_TRANSACTION_ID,
-                type = Constants.SAMPLE_ACCOUNT_TYPE
+                transaction_id = transactionId
             });
             response.Wait();
             Console.Write(JsonConvert.SerializeObject(response.Result));
@@ -92,9 +100,59 @@ namespace PayWithCapture.Tests
             Client client = this.getDefaultClient();
             var response = client.validatePayment(new Models.PaymentValidationRequest()
             {
-                type = Constants.ONE_OFF_ACCOUNT,
                 otp = Constants.SAMPLE_OTP
             });
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Create_Card_Payment_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.createCardPayment(new Models.CardPaymentRequest()
+            {
+                amount = Constants.SAMPLE_AMOUNT,
+                merchant_id = merchantId,
+                description = Constants.SAMPLE_DESCRIPTION,
+                transaction_id = "773649urxa",
+                cardno = Constants.SAMPLE_CARD_NO,
+                expyear = Constants.SAMPLE_EXPIRY_DATE.Year.ToString(),
+                expmth = Constants.SAMPLE_EXPIRY_DATE.Month.ToString(),
+                cvv = Constants.SAMPLE_CVV,
+                pin = Constants.SAMPLE_PIN,
+                redirect_url = Constants.REDIRECT_URL
+            });
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Validate_Card_Payment_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.validateCardPayment(new Models.CardValidationRequest()
+            {
+                otp = Constants.SAMPLE_OTP
+            });
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Send_Sms_Otp_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.sendSmsOtp(Constants.SAMPLE_PHONE);
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Send_Voice_Otp_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.sendVoiceOtp(Constants.SAMPLE_PHONE);
             response.Wait();
             Console.Write(JsonConvert.SerializeObject(response.Result));
         }

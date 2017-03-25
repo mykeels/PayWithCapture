@@ -69,13 +69,49 @@ namespace PayWithCapture
         public async Task<Response<AccountPaymentResponse>> createPayment(AccountPaymentRequest paymentRequest)
         {
             await this.authenticate(); //important! make sure the client is authenticated
-            return await Api.PostAsync<Response<AccountPaymentResponse>>(Constants.ResolveApiUrl(Constants.PAYMENT_URL, this._config.environment), paymentRequest.ToUrlFormEncoding(), Constants.CONTENT_TYPE_URL_FORM, getDefaultHeaders());
+            return await Api.PostAsync<Response<AccountPaymentResponse>>(Constants.ResolveApiUrl(Constants.PAYMENT_URL, this._config.environment), paymentRequest.ToJson(), Constants.CONTENT_TYPE_JSON, getDefaultHeaders());
         }
 
         public async Task<Response<PaymentValidationResponse>> validatePayment(PaymentValidationRequest paymentRequest)
         {
             await this.authenticate(); //important! make sure the client is authenticated
             return await Api.PostAsync<Response<PaymentValidationResponse>>(Constants.ResolveApiUrl(Constants.VALIDATE_PAYMENT_URL, this._config.environment), paymentRequest.ToUrlFormEncoding(), Constants.CONTENT_TYPE_URL_FORM, getDefaultHeaders());
+        }
+
+        public async Task<Response<CardPaymentMasterResponse>> createCardPayment(CardPaymentRequest paymentRequest)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.PostAsync<Response<CardPaymentMasterResponse>>(Constants.ResolveApiUrl(Constants.CREATE_CARD_PAYMENT_URL, this._config.environment), paymentRequest.ToJson(), Constants.CONTENT_TYPE_JSON, getDefaultHeaders());
+        }
+
+        public async Task<Response<CardPaymentVerveResponse>> createVerveCardPayment(CardPaymentRequest paymentRequest)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.PostAsync<Response<CardPaymentVerveResponse>>(Constants.ResolveApiUrl(Constants.CREATE_CARD_PAYMENT_URL, this._config.environment), paymentRequest.ToUrlFormEncoding(), Constants.CONTENT_TYPE_URL_FORM, getDefaultHeaders());
+        }
+
+        public async Task<Response<CardValidationResponse>> validateCardPayment(CardValidationRequest paymentRequest)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.PostAsync<Response<CardValidationResponse>>(Constants.ResolveApiUrl(Constants.VALIDATE_CARD_PAYMENT_URL, this._config.environment), paymentRequest.ToUrlFormEncoding(), Constants.CONTENT_TYPE_URL_FORM, getDefaultHeaders());
+        }
+
+        public async Task<Response<List<PosPrintResponse>>> getPayments(CardValidationRequest paymentRequest)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.PostAsync<Response<List<PosPrintResponse>>>(Constants.ResolveApiUrl(Constants.TRANSACTION_DETAILS_URL, this._config.environment), paymentRequest.ToUrlFormEncoding(), Constants.CONTENT_TYPE_URL_FORM, getDefaultHeaders());
+        }
+
+        public async Task<Response<string>> sendSmsOtp(string phone)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.GetAsync<Response<string>>(Constants.ResolveApiUrl(Constants.SMS_OTP_URL, this._config.environment) + "/" + phone, getDefaultHeaders());
+        }
+
+        public async Task<Response<string>> sendVoiceOtp(string phone)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.GetAsync<Response<string>>(Constants.ResolveApiUrl(Constants.VOICE_OTP_URL, this._config.environment) + "/" + phone, getDefaultHeaders());
         }
     }
 }

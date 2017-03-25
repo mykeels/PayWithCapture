@@ -3,7 +3,7 @@ namespace PayWithCapture.Models
 {
     public class CardPaymentRequest
     {
-        public string type { get; set; }
+        public string type { get { return Common.Constants.CARD_TYPE; } }
         public string amount { get; set; }
         public string merchant_id { get; set; }
         public string description { get; set; }
