@@ -68,7 +68,7 @@ namespace PayWithCapture.Helpers
         {
             string response = Get(url, headers, credentials);
             T ret = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(response);
-            return ret;
+            return ret; 
         }
 
         public static async Task<string> GetAsync(string url, Dictionary<string, string> headers = null, NetworkCredential credentials = null)
