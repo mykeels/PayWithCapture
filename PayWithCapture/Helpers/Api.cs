@@ -109,7 +109,31 @@ namespace PayWithCapture.Helpers
             }
             w.Headers.Add("Content-Type", contenttype);
             w.Headers.Add("Accept", "text/plain, " + contenttype);
-            return w.UploadString(url, value);
+            try
+            {
+                string ret = w.UploadString(url, value);
+                return ret;
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                    return responseText;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return null;
         }
 
         public static T Post<T>(string url, string value, string contenttype = Constants.CONTENT_TYPE_JSON, Dictionary<string, string> headers = null, bool useSsl = false, NetworkCredential credentials = null)
@@ -122,9 +146,15 @@ namespace PayWithCapture.Helpers
             }
             else
             {
-                ret = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(response);
+                try
+                {
+                    ret = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(response);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(response, ex);
+                }
             }
-
             return ret;
         }
 

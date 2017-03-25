@@ -50,6 +50,7 @@
     <Compile Include="Common\Environment.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Helpers\Api.cs" />
+    <Compile Include="Models\Accounts\AccountEnquiry.cs" />
     <Compile Include="Models\Banks\BankResponse.cs" />
     <Compile Include="Models\Banks\BankTransferForeignResponse.cs" />
     <Compile Include="Models\Banks\BankTransferLocalRequest.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Models\QrCode\QRCodeFetchRequest.cs" />
     <Compile Include="Models\QrCode\QRProductGenerationRequest.cs" />
     <Compile Include="Models\Response.cs" />
-    <Compile Include="Models\SmsOtpResponse.cs" />
     <Compile Include="Models\Transactions\TransactionRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

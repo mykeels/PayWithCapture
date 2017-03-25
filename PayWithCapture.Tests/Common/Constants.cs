@@ -17,6 +17,9 @@ namespace PayWithCapture.Tests.Common
         public const string SAMPLE_ACCOUNT = "0690000032";
         public const string SAMPLE_AMOUNT = "1000";
         public const string SAMPLE_OTP = "12346";
+        public const string SAMPLE_IMAGE_URL = "data/images/storm-trooper-clone.jpg";
+        public const string SAMPLE_PRODUCT_ID = "58d668d8f800fa10000af3c5";
+        public const string SAMPLE_BANK_CODE = "044";
         public const string REDIRECT_URL = "google.com.ng";
 
         public const string SAMPLE_CARD_NO = "5399890906267588";

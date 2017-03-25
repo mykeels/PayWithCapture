@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PayWithCapture.Models
 {
-    public class SmsOtpResponse: Response<string>
+    public class AccountEnquiry
     {
+        public string bankcode { get; set; }
+        public string accountnumber { get; set; }
     }
 }

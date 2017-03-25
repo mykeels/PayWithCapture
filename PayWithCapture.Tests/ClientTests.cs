@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using PayWithCapture;
+using System.Drawing;
 using System.Configuration;
 using PayWithCapture.Tests.Common;
 
@@ -31,6 +32,19 @@ namespace PayWithCapture.Tests
                 merchantId = merchantId,
                 environment = environment
             });
+        }
+
+        private Bitmap getImage(string filePath)
+        {
+            return (Bitmap)Bitmap.FromFile(filePath);
+        }
+
+        private string getBase64(Bitmap bmp)
+        {
+            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
+            byte[] imageBytes = stream.ToArray();
+            return Convert.ToBase64String(imageBytes);
         }
 
         [TestMethod]
@@ -153,6 +167,60 @@ namespace PayWithCapture.Tests
         {
             Client client = this.getDefaultClient();
             var response = client.sendVoiceOtp(Constants.SAMPLE_PHONE);
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Authenticate_Otp_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.authenticateOtp(new Models.OtpAuthenticationRequest()
+            {
+                otp = Constants.SAMPLE_OTP,
+                phonenumber = Constants.SAMPLE_PHONE
+            });
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Generate_Product_QR_Works()
+        {
+            Client client = this.getDefaultClient();
+            string productName = "Storm-Troopers";
+            var response = client.generateProductQrCode(new Models.QRProductGenerationRequest()
+            {
+                amount = Constants.SAMPLE_AMOUNT,
+                amount_locked = "true",
+                description = Constants.SAMPLE_DESCRIPTION,
+                image = getBase64(getImage(Constants.SAMPLE_IMAGE_URL)),
+                merchant_id = merchantId,
+                name = productName
+            });
+            response.Wait();
+            System.IO.File.WriteAllText("Data/Product-" + productName + ".json", JsonConvert.SerializeObject(response.Result, Formatting.Indented));
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Fetch_Product_QR_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.fetchProductQrCode(Constants.SAMPLE_PRODUCT_ID);
+            response.Wait();
+            Console.Write(JsonConvert.SerializeObject(response.Result));
+        }
+
+        [TestMethod]
+        public void Test_That_Make_Account_Enquiry_Works()
+        {
+            Client client = this.getDefaultClient();
+            var response = client.makeAccountEnquiry(new Models.AccountEnquiry()
+            {
+                bankcode = Constants.SAMPLE_BANK_CODE,
+                accountnumber = Constants.SAMPLE_ACCOUNT
+            });
             response.Wait();
             Console.Write(JsonConvert.SerializeObject(response.Result));
         }

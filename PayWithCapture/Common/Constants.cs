@@ -32,6 +32,9 @@ namespace PayWithCapture.Common
         public const string POS_PRINT_URL = "orders/transactions";
         public const string SMS_OTP_URL = "otp/sms";
         public const string VOICE_OTP_URL = "otp/voice";
+        public const string AUTHENTICATE_OTP_URL = "otp/authenticate";
+        public const string QR_PRODUCT_URL = "products/getQrCode";
+        public const string ACCOUNT_VALIDATE_URL = "account/validation";
 
         public static string ResolveApiUrl(string urlSuffix, Environment environment = Environment.Staging)
         {
