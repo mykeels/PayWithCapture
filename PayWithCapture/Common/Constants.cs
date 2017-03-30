@@ -31,6 +31,8 @@ namespace PayWithCapture.Common
         public const string AUTHENTICATE_OTP_URL = "otp/authenticate";
         public const string QR_PRODUCT_URL = "products/getQrCode";
         public const string ACCOUNT_VALIDATE_URL = "account/validation";
+        public const string ACCOUNT_OPEN_URL = "user/requestBankAccount";
+        public const string ACCOUNT_OPEN_VALIDATION_URL = "user/validateAccountRequest";
 
         public static string ResolveApiUrl(string urlSuffix, Environment environment = Environment.Staging)
         {

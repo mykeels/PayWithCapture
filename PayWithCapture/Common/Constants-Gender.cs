@@ -6,7 +6,7 @@ namespace PayWithCapture.Common
         public class Gender
         {
             public const string MALE = "M";
-            public const string FEMALE = "M";
+            public const string FEMALE = "F";
         }
     }
 }

@@ -182,5 +182,17 @@ namespace PayWithCapture
             await this.authenticate(); //important! make sure the client is authenticated
             return await Api.PostAsync(Constants.ResolveApiUrl(Constants.ACCOUNT_VALIDATE_URL, this._config.environment), accountEnquiry.ToJson(), Constants.CONTENT_TYPE_JSON, getDefaultHeaders());
         }
+
+        public async Task<AccountOpenResponse> openAccount(AccountOpenRequest request)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.PostAsync<AccountOpenResponse>(Constants.ResolveApiUrl(Constants.ACCOUNT_OPEN_URL, this._config.environment), request.ToJson(), Constants.CONTENT_TYPE_JSON, getDefaultHeaders());
+        }
+
+        public async Task<AccountOpenValidationResponse> validateAccount(AccountOpenValidationRequest request)
+        {
+            await this.authenticate(); //important! make sure the client is authenticated
+            return await Api.PostAsync<AccountOpenValidationResponse>(Constants.ResolveApiUrl(Constants.ACCOUNT_OPEN_VALIDATION_URL, this._config.environment), request.ToJson(), Constants.CONTENT_TYPE_JSON, getDefaultHeaders());
+        }
     }
 }

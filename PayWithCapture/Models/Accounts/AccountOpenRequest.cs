@@ -1,6 +1,6 @@
 ﻿
 
-namespace PayWithCapture.Models.Accounts
+namespace PayWithCapture.Models
 {
     public class AccountOpenRequest
     {

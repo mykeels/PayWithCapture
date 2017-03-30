@@ -54,6 +54,9 @@
     <Compile Include="Helpers\Api.cs" />
     <Compile Include="Models\Accounts\AccountEnquiry.cs" />
     <Compile Include="Models\Accounts\AccountOpenRequest.cs" />
+    <Compile Include="Models\Accounts\AccountOpenResponse.cs" />
+    <Compile Include="Models\Accounts\AccountOpenValidationRequest.cs" />
+    <Compile Include="Models\Accounts\AccountOpenValidationResponse.cs" />
     <Compile Include="Models\Banks\BankResponse.cs" />
     <Compile Include="Models\Banks\BankTransferForeignResponse.cs" />
     <Compile Include="Models\Banks\BankTransferLocalRequest.cs" />
