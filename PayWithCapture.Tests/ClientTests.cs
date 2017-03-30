@@ -188,7 +188,6 @@ namespace PayWithCapture.Tests
         public void Test_That_Generate_Product_QR_Works()
         {
             Client client = this.getDefaultClient();
-            string productName = "Storm-Troopers";
             var response = client.generateProductQrCode(new Models.QRProductGenerationRequest()
             {
                 amount = Constants.SAMPLE_AMOUNT,
@@ -196,10 +195,10 @@ namespace PayWithCapture.Tests
                 description = Constants.SAMPLE_DESCRIPTION,
                 image = getBase64(getImage(Constants.SAMPLE_IMAGE_URL)),
                 merchant_id = merchantId,
-                name = productName
+                name = Constants.SAMPLE_PRODUCT_NAME
             });
             response.Wait();
-            System.IO.File.WriteAllText("Data/Product-" + productName + ".json", JsonConvert.SerializeObject(response.Result, Formatting.Indented));
+            System.IO.File.WriteAllText("Data/Product-" + Constants.SAMPLE_PRODUCT_NAME + ".json", JsonConvert.SerializeObject(response.Result, Formatting.Indented));
             Console.Write(JsonConvert.SerializeObject(response.Result));
         }
 
