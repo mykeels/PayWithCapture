@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PayWithCapture.Common
 {
-    public class Constants
+    public partial class Constants
     {
         public const string CONTENT_TYPE_XML = "text/xml";
         public const string CONTENT_TYPE_JSON = "application/json";
